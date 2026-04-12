@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasmine F. Dela Cruz - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #999999 0%, #003399 55%, #d966ff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #222;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            max-width: 420px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .decorative-top {
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(217, 102, 255, 0.18);
+        }
+
+        .decorative-bottom {
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(0, 51, 153, 0.14);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003399 0%, #d966ff 100%);
+            padding: 32px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 14px;
+        }
+
+        .profile-photo {
+            width: 104px;
+            height: 104px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .header-text h1 {
+            font-size: 26px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .header-text p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 26px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            padding: 18px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(0, 51, 153, 0.12);
+        }
+
+        .section h2 {
+            font-size: 18px;
+            color: #003399;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #003399;
+        }
+
+        .section p,
+        .section li,
+        .section strong {
+            color: #333;
+            line-height: 1.7;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .section ul {
+            margin-left: 20px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #003399;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 24px;
+            font-size: 12px;
+            margin: 5px 5px 5px 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 16px;
+        }
+
+        .timeline-item strong {
+            color: #003399;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 51, 153, 0.12);
+            font-size: 14px;
+        }
+
+        .timeline-item strong:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-item .year {
+            color: #d966ff;
+            font-weight: bold;
+        }
+
+        .achievement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .achievement-item {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0, 51, 153, 0.12);
+            font-size: 14px;
+            color: #333;
+        }
+
+        .achievement-item:last-child {
+            border-bottom: none;
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            background: #003399;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 14px;
+            font-size: 11px;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #003399 0%, #999999 100%);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: white;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .contact-item i {
+            font-size: 18px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .facebook,
+        .linkedin,
+        .twitter {
+            background: #003399;
+        }
+
+        .facebook:hover,
+        .linkedin:hover,
+        .twitter:hover {
+            background: #002466;
+        }
+
+        .instagram {
+            background: #d966ff;
+        }
+
+        .instagram:hover {
+            opacity: 0.9;
+        }
+
+        .github {
+            background: #999999;
+        }
+
+        .github:hover {
+            background: #7a7a7a;
+        }
+
+        .email {
+            background: #d966ff;
+        }
+
+        .email:hover {
+            background: #bf4edc;
+        }
+
+        /* Apple Music Style Player */
+        .apple-music-player {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin: 10px 0;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .apple-music-player .album-art {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            margin-bottom: 16px;
+            object-fit: cover;
+        }
+
+        .apple-music-player .song-info {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .apple-music-player .song-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            color: white;
+        }
+
+        .apple-music-player .artist {
+            font-size: 14px;
+            color: #b3b3b3;
+            margin: 4px 0 0 0;
+        }
+
+        .apple-music-player {
+            position: relative;
+        }
+
+        .apple-music-player audio {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .apple-music-player .player-controls {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .apple-music-player .play-button {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.16);
+            color: white;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .apple-music-player .play-button:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .apple-music-player .play-button i {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+        <div class="decorative-top"></div>
+        <div class="decorative-bottom"></div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <img src=" e5ab524d-17ce-48b2-a096-acc6ca19ecc0.jpg" alt="Jasmine Dela Cruz" class="profile-photo">
+                <div class="header-text">
+                    <h1>Jasmine F. Dela Cruz</h1>
+                    <p>High school Student</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+
+
+            <!-- About Me -->
+            <div class="section">
+                <h2>About Me</h2>
+                <p><strong>Age:</strong> 12</p>
+                <p><strong>Favorite Color:</strong> Blue</p>
+                <p><strong>Nickname:</strong> Jazz</p>
+                <p><strong>Birthday:</strong> May 26, 2014</p>
+                <p><strong>Favorite Music:</strong></p>
+                <div class="apple-music-player">
+                    <img src="ab67616d0000b2737c68face1dc58127f3a7b1cc.jpg" alt="Music Cover" class="album-art">
+                    <div class="song-info">
+                        <h3 class="song-title">Superpowers</h3>
+                        <p class="artist">Daniel Caesar</p>
+                    </div>
+                    <audio id="player-audio">
+                        <source src="Daniel Caesar - Superpowers (Official Audio) (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div class="player-controls">
+                        <button type="button" class="play-button" onclick="toggleMusic(this)">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                <script>
+                    function toggleMusic(button) {
+                        var audio = document.getElementById('player-audio');
+                        if (!audio) return;
+                        if (audio.paused) {
+                            audio.play();
+                            button.innerHTML = '<i class="fas fa-pause"></i>';
+                        } else {
+                            audio.pause();
+                            button.innerHTML = '<i class="fas fa-play"></i>';
+                        }
+                    }
+                </script>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="section">
+                <h2>Achievements</h2>
+                <div class="achievement-list">
+                    <div class="achievement-item">
+                        <span class="achievement-badge">WITH HONOR</span>
+                        <strong>Grade 1</strong>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-badge">WITH HONOR</span>
+                        <strong>Grade 2</strong>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-badge">WITH HONOR</span>
+                        <strong>Grade 3</strong>
+                    </div>
+
+                    <div class="achievement-item">
+                        <span class="achievement-badge">WITH HONOR</span>
+                        <strong>Grade 6</strong>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-badge">SECTION 1</span>
+                        <strong>From grade 1 to 4</strong>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="achievement-badge">SECTION 2</span>
+                        <strong>From grade 5 to 6</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <h2>Education</h2>
+                <strong>Kapitbahayan Elementary School</strong>
+            </div>
+
+            <!-- Extracurricular -->
+            <div class="section">
+                <h2>Extracurricular</h2>
+                <ul>
+                    <li>Secretary, Peace Club (2025 - 2026)</li>
+                    <li>Girl scout, (2019 - 2026) </li>
+                </ul>
+            </div>
+
+            <!-- Professional Skills -->
+            <div class="section">
+                <h2>Motto in life</h2>
+                <ul>
+                    <li><strong>SOMETIMES YOU WIN, SOME TIMES YOU LEARN</strong></li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Footer with Contact Info -->
+        <div class="footer">
+
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>BLK 42 LOT 3 ALUMAHAN ST NBBS KAUNLARAN NAVOTAS CITY</span>
+            </div>
+        </div>
+
+        <!-- Social Media Buttons -->
+        <div style="background: white; padding: 30px; text-align: center; position: relative; z-index: 1;">
+            <h3 style="margin-bottom: 15px; color: #2c3e50;">Connect With Me</h3>
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/share/18iVDLquMz/" target="_blank" class="social-btn facebook"
+                    title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
